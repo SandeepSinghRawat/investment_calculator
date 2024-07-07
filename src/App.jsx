@@ -11,6 +11,7 @@ function App() {
     expectedReturn: 5,
     duration: 1,
   });
+  const inputValid = userData.duration >=1;
   function handleChange(event, data) {
     console.log("event", event.target.value);
     setUserData((prev) => {
@@ -24,7 +25,8 @@ function App() {
       {/* <h1>React Investment Calculator</h1> */}
       <Header />
       <InvestmentForm userData={userData} handleChange={handleChange}/>
-      <ResultData userData={userData}/>
+      {!inputValid && <p className="center">Please enter valid input (duration greater than zero).</p>}
+      {inputValid && <ResultData userData={userData}/>}
     </>  
   );
 }

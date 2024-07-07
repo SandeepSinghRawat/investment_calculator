@@ -1,15 +1,56 @@
-export default function InvestmentForm() {
-  return (<main id="user-input ">
-    <div className="input-group">
-      <label for="investment" >INITIAL INVESTMENT</label>
-      <input id="investment" type="number" step="5" />
-      <label for="annual_investment" >ANNUAL INVESTMENT</label>
-      <input id="annual_investment" type="number" step="5" />
-      <label for="return" >EXPECTED RETURN</label>
-      <input id="return" type="number" step="5" />
-      <label for="duration" >DURATION</label>
-      <input id="duration" type="number" step="5" />
-    </div>
+// import { useState } from "react";
 
-  </main>)
+export default function InvestmentForm({userData, handleChange}) {
+  
+  console.log(userData);
+  return (
+    <section id="user-input">
+      <div className="input-group">
+        <p>
+          <label htmlFor="investment">INITIAL INVESTMENT</label>
+          <input
+            onChange={(e)=>{
+              console.log("e for event", e);
+              return handleChange(e, "investment")}}
+            id="investment"
+            type="number"
+            value={userData.investment}
+            required
+          />
+        </p>
+        <p>
+          <label htmlFor="annual_investment">ANNUAL INVESTMENT</label>
+          <input
+            id="annual_investment"
+            onChange={(event)=> {handleChange(event, "annual_investment")}}
+            type="number"
+            required
+            value={userData.annual_investment}
+          />
+        </p>
+      </div>
+      <div className="input-group">
+        <p>
+          <label htmlFor="return">EXPECTED RETURN</label>
+          <input
+            id="return"
+            onChange={(event) => {handleChange(event, "expectedReturn")}}
+            type="number"
+            required
+            value={userData.expectedReturn}
+            />
+        </p>
+        <p>
+          <label htmlFor="duration">DURATION</label>
+          <input
+            id="duration"
+            onChange={(event) => {handleChange(event, "duration")}}
+            type="number"
+            required
+            value={userData.duration}
+            />
+        </p>
+      </div>
+    </section>
+  );
 }
